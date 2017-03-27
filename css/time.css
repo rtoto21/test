@@ -1,0 +1,77 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.panel-user {
+    height: 150px;
+}
+
+.cont_text_doc {
+    height: 40px;
+    border: solid 1px black;
+    line-height: 30px;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 5px 50px 5px 10px;
+    margin: 10px 0;
+}
+
+.cont_text_doc span {
+    font-size: 33px;
+}
+
+.panel-buttons {
+    height: 350px;
+    box-sizing: border-box;
+}
+
+.button-number {
+    height: 65px;
+    width: 100%;
+    margin: 5px 5px;
+    font-size: 30px;
+    -moz-box-shadowm: 4px 2px 2px grey;
+    -webkit-box-shadow: 4px 2px 2px grey;
+    box-shadow: 4px 2px 2px grey;
+}
+
+.button-borrar {
+    font-size: 20px;
+}
+
+.panel-logo {
+    height: 200px;
+}
+
+.panel-time {
+    height: 80px;
+}
+
+.hour {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.date {
+    font-size: 30px;
+    text-align: center;
+}
+
+.panel-send {
+    margin-top: 75px;
+}
+
+.button-send {
+    width: 100%;
+    height: 60px;
+    margin-top: 25px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.button-send:first-child {
+    margin-top: 0;
+}

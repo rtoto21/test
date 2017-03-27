@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/time.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div class="col-md-offset-2 col-sm-offset-1">
+        <div class="col-md-4 col-sm-6">
+            <div class="panel-user">
+                <img />
+                <span id="name"></span>
+            </div>
+            <div class="cont_text_doc">
+                <span id="text_doc"></span>
+            </div>
+            <div class="panel-buttons">
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_1" onclick="write_span('1')">1</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_2" onclick="write_span('2')">2</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_3" onclick="write_span('3')">3</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_4" onclick="write_span('4')">4</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_5" onclick="write_span('5')">5</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_6" onclick="write_span('6')">6</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_7" onclick="write_span('7')">7</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_8" onclick="write_span('8')">8</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_9" onclick="write_span('9')">9</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number button-borrar" id="button_borrar" onclick="back_span()">Borrar</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_0" onclick="write_span('0')">0</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="button-number" id="button_limpiar" onclick="clear_span()">limpiar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-2 col-md-4">
+            <div class="panel-logo">
+
+            </div>
+            <div class="panel-time">
+                <div class="hour">
+                    Hora: <span id="hour"></span>
+                </div>
+                <div class="date">
+                    <span id="date"></span>
+                </div>
+            </div>
+            <div class="panel-send">
+                <button class="button-send" id="button_send_in" onclick="send_time('in')">Entrada</button>
+                <button class="button-send" id="button_send_out" onclick="send_time('out')">Salida</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/time.js"></script>
+</body>
+</html>

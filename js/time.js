@@ -1,36 +1,118 @@
-﻿var span_text_doc = document.getElementById("text_doc");
-var APIBASEURL = 'http://localhost:55242/api';
-var username = "r4PzMz8Z6fYqNH5GBg9e";
-var password = "Y4P66RTCnRsvahHU3Ey5";
-setInterval(calculateTime(), 3000);
+﻿var APIBASEURL = 'http://localhost:53593/api';
+
+calculateTime();
+setInterval(calculateTime, 3000);
+
+var span_text_doc = document.getElementById("text_doc");
+var placeholder = document.getElementById('placeholder')
+var success = document.getElementById('panelSuccess')
+var user = document.getElementById('panelUser')
+
+document.getElementById('button_1').addEventListener('touchend', write_span.bind(null, '1'))
+document.getElementById('button_2').addEventListener('touchend', write_span.bind(null, '2'))
+document.getElementById('button_3').addEventListener('touchend', write_span.bind(null, '3'))
+document.getElementById('button_4').addEventListener('touchend', write_span.bind(null, '4'))
+document.getElementById('button_5').addEventListener('touchend', write_span.bind(null, '5'))
+document.getElementById('button_6').addEventListener('touchend', write_span.bind(null, '6'))
+document.getElementById('button_7').addEventListener('touchend', write_span.bind(null, '7'))
+document.getElementById('button_8').addEventListener('touchend', write_span.bind(null, '8'))
+document.getElementById('button_9').addEventListener('touchend', write_span.bind(null, '9'))
+document.getElementById('button_0').addEventListener('touchend', write_span.bind(null, '0'))
+document.getElementById('button_0').addEventListener('touchend', write_span.bind(null, '0'))
+document.getElementById('button_borrar').addEventListener('touchend', clear_span)
+document.getElementById('button_limpiar').addEventListener('touchend', back_span)
+document.getElementById('button_send_in').addEventListener('touchend', send_time.bind(null, 'in'))
+document.getElementById('button_send_out').addEventListener('touchend', send_time.bind(null, 'out'))
 
 function write_span(text) {
-    span_text_doc.innerText += text;
-    findName(span_text_doc.innerText);
+    placeholder.style.display = 'none'
+    span_text_doc.innerText += text
+    findName(span_text_doc.innerText)
 }
 
 function back_span() {
-    span_text_doc.innerText = span_text_doc.innerText.substring(0, span_text_doc.innerText.length - 1);
-    findName(span_text_doc.innerText);
+    span_text_doc.innerText = span_text_doc.innerText.substring(0, span_text_doc.innerText.length - 1)
+    findName(span_text_doc.innerText)
+    if (span_text_doc.innerText.length == 0) {
+        placeholder.style.display = 'block'
+    }
 }
 
 function clear_span() {
-    span_text_doc.innerText = "";
-    findName('');
+    span_text_doc.innerText = ''
+    findName('')
+    placeholder.style.display = 'block'
 }
 
 function send_time(type) {
-    var times = JSON.parse(window.localStorage.getItem("times"));
+    var times = JSON.parse(window.localStorage.getItem("times"))
     if (times == null) {
-        times = [];
+        times = []
     }
     times.push({
         document: span_text_doc.innerText,
-        time: Math.floor(Date.now() / 1000),
+        time: getTime(),
         type: type
     })
-    window.localStorage.setItem("times", JSON.stringify(times));
-    post('/test', times, send_Ok, send_Fail);
+    window.localStorage.setItem("times", JSON.stringify(times))
+    fetch(APIBASEURL + '/App/SetTimes/', {
+        method: 'POST',
+        headers: new Headers({
+            'mode': 'cors',
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(times)
+    })
+    .then(function (response) {
+        if (response.status === 200) {
+            window.localStorage.clear()
+        }
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+    user.style.display = 'none'
+    success.style.display = 'block'
+    span_text_doc.innerText = ''
+    placeholder.style.display = 'block'
+    setTimeout(resetName, 3000)
+}
+
+function resetName() {
+    document.getElementById('imageUser').src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+    document.getElementById('nameUser').innerHTML = ''
+    success.style.display = 'none'
+    user.style.display = 'block'
+}
+
+function getTime() {
+    var date = new Date();
+    var day = date.getDate();       // yields date
+    var month = date.getMonth() + 1;    // yields month (add one as '.getMonth()' is zero indexed)
+    var year = date.getFullYear();  // yields year
+    var hour = date.getHours();     // yields hours 
+    var minute = date.getMinutes(); // yields minutes
+    var second = date.getSeconds(); // yields seconds
+
+
+    if (day < 10) {
+        day = '0' + day;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
+    if (second < 10) {
+        second = '0' + second;
+    }
+
+    // After this construct a string with the above results as below
+    return time = day + "/" + month + "/" + year + " " + hour + ':' + minute + ':' + second;
 }
 
 function send_Ok() {
@@ -40,56 +122,6 @@ function send_Ok() {
 
 function send_Fail() {
     clear_span();
-}
-
-function get(url) {
-    return new Promise(function (resolve, reject) {
-        //var auth = b64EncodeUnicode(username + ':' + password);
-        //xhr.setRequestHeader('Authorization', 'Basic ' + auth);
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', APIBASEURL + url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-
-function post(url, data, callback, err_callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', APIBASEURL + url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            if (callback) {
-                callback();
-            }
-        } else {
-            if (err_callback) {
-                err_callback();
-            }
-        }
-    };
-    xhr.send(data);
-}
-
-function b64EncodeUnicode(str) {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-        return String.fromCharCode('0x' + p1);
-    }));
 }
 
 function calculateTime() {
@@ -116,23 +148,33 @@ function calculateTime() {
 }
 
 function findName(text) {
-    get('/Empleado/GetApp/0/?documentoIdentidad=' + text)
-        .then(function (moreDatums) {
-            console.log(moreDatums);
+    var request = new Request(APIBASEURL + '/App/GetApp?documentoIdentidad=' + text, {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'mode': 'cors'
         })
-        .catch(function (err) {
-            console.error('Error: ' + err.statusText);
-        });
+    })
+    fetch(request).then(function (response) {
+        var contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            return response.json().then(function (json) {
+                document.getElementById('imageUser').src = json.image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                document.getElementById('nameUser').innerHTML = json.name
+            })
+        }
+    }).catch(function (err) {
+        console.log(err)
+    })
 }
 
 function printName(err, response) {
     if (err) {
-        console.log(err);
+        console.log(err)
     }
-    console.log(response);
-    //document.getElementById("name").innerText = xhr.response.text;
+    console.log(response)
 }
 
 function printNameGhost() {
-    document.getElementById("name").innerHTML = '';
+    document.getElementById("name").innerHTML = ''
 }

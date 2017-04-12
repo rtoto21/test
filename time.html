@@ -6,57 +6,71 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
-    <div class="col-md-offset-2 col-sm-offset-1">
-        <div class="col-md-4 col-sm-6">
+    <div class="col-sm-offset-1 col-sm-10 cont">
+        <div class="col-md-5">
             <div class="panel-user">
-                <img />
-                <span id="name"></span>
+                <div id="panelUser">
+                    <img id="imageUser" class="col-sm-4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    <strong id="nameUser" class="col-sm-8"></strong>
+                </div>
+                <div id="panelSuccess">
+                    <img src="img/tick.png" />
+                    <span>Su ingreso se registró correctamente</span>
+                </div>
             </div>
             <div class="cont_text_doc">
-                <span id="text_doc"></span>
+                <span id="text_doc"></span><strong id="placeholder">Ingrese su C.I.</strong>
             </div>
             <div class="panel-buttons">
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_1" onclick="write_span('1')">1</button>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_1">1</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_2">2</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_3">3</button>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_2" onclick="write_span('2')">2</button>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_4">4</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_5">5</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_6">6</button>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_3" onclick="write_span('3')">3</button>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_7">7</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_8">8</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_9">9</button>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_4" onclick="write_span('4')">4</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_5" onclick="write_span('5')">5</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_6" onclick="write_span('6')">6</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_7" onclick="write_span('7')">7</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_8" onclick="write_span('8')">8</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_9" onclick="write_span('9')">9</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number button-borrar" id="button_borrar" onclick="back_span()">Borrar</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_0" onclick="write_span('0')">0</button>
-                </div>
-                <div class="col-xs-4">
-                    <button class="button-number" id="button_limpiar" onclick="clear_span()">limpiar</button>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button class="button-number button-borrar" id="button_borrar">Borrar</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_0">0</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="button-number" id="button_limpiar"><img src="img/atras.png" /></button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-offset-2 col-md-4">
+        <div class="col-md-offset-2 col-md-5">
             <div class="panel-logo">
-
+                <img src="img/logo.png" />
             </div>
             <div class="panel-time">
                 <div class="hour">
@@ -66,9 +80,10 @@
                     <span id="date"></span>
                 </div>
             </div>
+            <div class="block"></div>
             <div class="panel-send">
-                <button class="button-send" id="button_send_in" onclick="send_time('in')">Entrada</button>
-                <button class="button-send" id="button_send_out" onclick="send_time('out')">Salida</button>
+                <button class="button-send" id="button_send_in" touchend="send_time('in')"><img src="img/entrada.png" />Entrada</button>
+                <button class="button-send" id="button_send_out" touchend="send_time('out')"><img src="img/salida.png" />Salida</button>
             </div>
         </div>
     </div>

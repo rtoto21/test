@@ -5,14 +5,24 @@
     };
     var divNotification = document.querySelector('.notification');
     if (divNotification) {
-        // api send notifiacion
-        var ok = false;
+        var json = { 'device': device.uuid }
+        var APIBASEURL = 'http://localhost:53593/api';
+        var request = new Request(APIBASEURL + '/App/SendNotification/', {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'mode': 'cors'
+            }),
+            body: JSON.stringify(json)
+        })
         var spanNotification = document.querySelector('#notification');
-        if (ok) {
-            spanNotification.innerHTML = 'Se ha enviado con éxito la notificación';
-        } else {
+        fetch(request).then(function (response) {
+            if (response.status === 200) {
+                spanNotification.innerHTML = 'Se ha enviado con éxito la notificación';
+            }
+        }).catch(function (err) {
             spanNotification.innerHTML = 'Hubo un error al enviar la notificación';
-        }
+        })
         divNotification.className += ' visible';
     };
 }

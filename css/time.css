@@ -4,14 +4,44 @@
     margin: 0;
 }
 
+.cont {
+    padding-top: 50px;
+}
+
 .panel-user {
     height: 150px;
+    overflow: hidden;
+    height: 150px;
+    text-overflow: ellipsis;
+}
+
+#panelSuccess {
+    display: none;
+    text-align: center;
+}
+
+#panelSuccess img {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#panelSuccess span {
+    font-size: 26px;
+}
+
+.panel-user strong {
+    font-size: 32px;
+}
+
+.panel-user img {
+    padding: 0;
 }
 
 .cont_text_doc {
-    height: 40px;
+    height: 60px;
     border: solid 1px black;
-    line-height: 30px;
+    line-height: 45px;
     word-wrap: break-word;
     overflow: hidden;
     padding: 5px 50px 5px 10px;
@@ -23,12 +53,12 @@
 }
 
 .panel-buttons {
-    height: 350px;
+    height: 375px;
     box-sizing: border-box;
 }
 
 .button-number {
-    height: 65px;
+    height: 85px;
     width: 100%;
     margin: 5px 5px;
     font-size: 30px;
@@ -42,11 +72,21 @@
 }
 
 .panel-logo {
-    height: 200px;
+    height: 140px;
+    margin-bottom: 20px;
 }
 
 .panel-time {
-    height: 80px;
+    height: 100px;
+    background-color: #ededed;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.panel-logo img {
+    height: 100%;
 }
 
 .hour {
@@ -60,18 +100,52 @@
     text-align: center;
 }
 
-.panel-send {
-    margin-top: 75px;
+.block {
+    height: 170px;
 }
 
 .button-send {
     width: 100%;
-    height: 60px;
+    height: 75px;
     margin-top: 25px;
     font-size: 30px;
     font-weight: bold;
+    -moz-box-shadowm: 4px 2px 2px grey;
+    -webkit-box-shadow: 4px 2px 2px grey;
+    box-shadow: 4px 2px 2px grey;
+}
+
+#button_limpiar img {
+    width: 40px;
+}
+
+#placeholder {
+    font-size: 33px;
 }
 
 .button-send:first-child {
     margin-top: 0;
+}
+
+.button-send img {
+    margin-right: 20px;
+}
+
+.panel-buttons .row button:first-child {
+    margin-left: 0;
+}
+
+@media screen and (max-width: 991px) {
+
+    .block {
+        display: none;
+    }
+
+    .panel-logo {
+        display: none;
+    }
+
+    .panel-time {
+        margin: 20px 0;
+    }
 }
